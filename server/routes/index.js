@@ -1,8 +1,13 @@
-module.exports = function (app, express) {
+module.exports = function(app, express) {
 
     var path = require('path');
+    var bodyParser = require('body-parser');
+    var logger = require('morgan');
 
-    app.use('/bootstrap', express.static(path.join(__dirname, '..', '..', 'node_modules', 'bootstrap')));
+    app.use(logger('tiny'));
+    app.use(express.json());
+
+    app.use('/bootstrap', express.static(path.join(__dirname,'..', 'node_modules', 'bootstrap')));
     app.use('/images', express.static(path.join(__dirname, '..', '..', 'public', 'images')));
     app.use('/css', express.static(path.join(__dirname, '..', '..', 'public', 'css')));
     app.use('/js', express.static(path.join(__dirname, '..', '..', 'public', 'js')));
@@ -11,12 +16,14 @@ module.exports = function (app, express) {
         res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
     });
 
-    app.use('/api/films', require('./films'));
+    app.use('/api/films', require('./films'));   
     app.use('/api/tvs', require('./tvs'));
 
     app.get('/*', (req, res) => {
         res.status(404).redirect("/");
     });
+
+   
 
 
 }
