@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
+var path = require('path');
+var Genere = require(path.join(__dirname, '..', 'generi', 'generi_model.js'));
 
 var filmSchema = new Schema ( {
-    vote_Count : {
+    vote_count : {
         type: Number,
         required: true
     },
@@ -34,10 +36,13 @@ var filmSchema = new Schema ( {
         type: String,
         required: true,
     },
-    genre_ids: [ {
-        type:Number,
-        required: true,
-    }],
+    genre_ids: {
+        type: [Schema.Types.ObjectId], 
+        ref: 'Genere',
+    },
+        // type: [Number],          esempio di required con array
+        // required:true,
+    
     backdrop_path: {
         type: String
     },
