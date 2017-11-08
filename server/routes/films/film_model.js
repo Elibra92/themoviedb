@@ -37,11 +37,10 @@ var filmSchema = new Schema ( {
         required: true,
     },
     genre_ids: {
-        type: [Schema.Types.ObjectId], 
-        ref: 'Genere',
+        type: [Number],          //esempio di required con array
+        required:true,
     },
-        // type: [Number],          esempio di required con array
-        // required:true,
+       
     
     backdrop_path: {
         type: String
@@ -58,7 +57,15 @@ var filmSchema = new Schema ( {
         type: Date,
         required: true
     }
-});
+}, {toJSON : { virtuals: true}});
 
+    filmSchema.virtual('nuovo_generi', {
+        ref: 'generi',
+        localField: 'genre_ids',
+        foreignField: 'id',
+        justOne: false
+    })
+
+    
 var Film = mongoose.model('movie', filmSchema);
 module.exports = Film;

@@ -3,7 +3,6 @@ var genereController = require('./generi_controller.js')
 
 var generi = express.Router();
 
-generi.get('/', genereController.generi_getAll);
 
 
 

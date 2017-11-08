@@ -7,7 +7,10 @@ films.get('/', filmController.getAll);
 films.get('/:id([0-9a-f]{24})', filmController.getOne);   //espressione regolare che significa: da 0 a 9, da a a f, di 24 caratteri
 films.get('/query', filmController.getByQuery)      //se tolgo l'espressione regolare, non entra dentro alla rotta/query ma dentro alla rotta /:id
 films.post('/', filmController.insertOne)
-films.get('/film_generi', filmController.getAll_film_generi);
+films.delete('/:id([0-9a-f]{24})', filmController.deleteOne);       //per rimuovere fare la chiamata con il DELETE
+films.put('/:id([0-9a-f]{24})', filmController.updateFilm);     //gli aggiornamenti farli sempre con il PUT
+films.put('/voto/:id([0-9a-f]{24})', filmController.updateVote)
+
 //la rotta seguente l'abbiamo creata nel file film_controller.js
 
 // films.get('/:id', (req, res) => {

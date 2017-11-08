@@ -7,7 +7,8 @@ module.exports = (function() {
     
     var getAll = function(req,res) {
         Film.find()
-       
+            .sort({vote_count: -1})
+            .populate({path:'nuovo_generi', select: 'name -_id'})
             .exec()
             .then(function(films) {
                 res.status(200).json(films);
@@ -44,38 +45,83 @@ module.exports = (function() {
 
     var insertOne = function(req,res) {
         var nuovoFilm = new Film(req.body);
-            nuovoFilm.save(function(err) {
-                res.status(500).json(err);
-            })
-            .then(function() {
+            nuovoFilm.save()
+            .then(function(film) {
                 console.log ('Film salvato');
-            })
-            .catch(function(err) {
-                throw err;
-            })
-    }
-
-    var getAll_film_generi = function(req,res) {
-        Film.find()
-            .populate('Genere')
-           
-            .exec()
-            .then(function(films) {
-                res.status(200).json(films);
-        
+                res.status(200).json(film).end()
             })
             .catch(function(err) {
                 res.status(500).send(err);
             })
-
     }
+
+
+    var deleteOne = function(req,res) {
+        Film.findById(req.params.id)
+            .exec()
+            .then(function(film) {
+                console.log('film rimosso')
+                return film.remove();
+            })
+            .then(function(film) {
+                console.log(req.params.id + 'rimosso dal db');
+                res.status(200).json(film);
+            })
+            .catch(function(err) {
+                res.status(500).send(err);
+            })
+    }
+
+    var updateFilm = function(req,res) {
+        Film.findByIdAndUpdate(req.params.id, {$set: req.body})
+        .exec()
+        .then(function (film) {
+            console.log('film aggiornato');
+            res.status(200).json(film);
+        })
+        .catch(function (err) {
+            res.status(500).send(err);
+        });
+    }
+
+    var updateVote = function(req,res) {
+            Film.findById(req.params.id)
+            .exec()
+            .then(function (film) {
+                var count= film.vote_count;
+                    console.log(count);
+                var voti= count+1;
+                    console.log(voti);
+                var media= film.vote_average;
+                    console.log(media);
+                var nuovovoto=req.body.voto_nostro;
+                    console.log(nuovovoto);
+                var calcolo= ((media*count)+nuovovoto)/voti;
+                    console.log(calcolo);
+                film.vote_average=calcolo;
+                film.vote_count=voti;
+                return film.save();
+              
+            })
+            .then(function(film){
+                res.status(200).json(film);
+            })
+          
+            .catch(function (err) {
+                res.status(500).send(err);
+            });
+        }
+
+
 
     return {
         getAll: getAll,
         getOne: getOne,
         getByQuery: getByQuery,
         insertOne: insertOne,
-        getAll_film_generi : getAll_film_generi
+        deleteOne : deleteOne,
+        updateFilm: updateFilm,
+        updateVote: updateVote
     }
 
 })();

@@ -3,13 +3,8 @@ mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
 
 var generiSchema = new Schema ( {
-    _id : Schema.Types.ObjectId,
-    
-    // id: {
-    //         type: Number,
-    //         required: true
-    //      },
-    name : {
+        Id : Number,
+        name : {
         type: String,
         required: true
     },
