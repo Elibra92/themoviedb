@@ -56,7 +56,8 @@ var filmSchema = new Schema ( {
         type: Date,
         required: true
     }
-}, {toJSON : { virtuals: true}});
+}, {toJSON : { virtuals: true}
+});
 
     filmSchema.virtual('nuovo_generi', {
         ref: 'generi',
