@@ -8,9 +8,9 @@ module.exports = function(app, express) {
     app.use(express.json());
 
     //non si deve fare il require xk è solo lato client
-    app.use('/angular', express.static(path.join(__dirname, '..', 'node_modules', 'angular')));
-    app.use('/app',  express.static(path.join(__dirname, '..', '..', 'app')));
-    app.use('/bootstrap', express.static(path.join(__dirname,'..', 'node_modules', 'bootstrap')));
+    app.use('/angular', express.static(path.join(__dirname, '..','..', 'node_modules', 'angular')));
+    app.use('/app',  express.static(path.join(__dirname,  '..', '..', 'app')));
+    app.use('/bootstrap', express.static(path.join(__dirname,'..','..', 'node_modules', 'bootstrap')));
     app.use('/images', express.static(path.join(__dirname, '..', '..', 'public', 'images')));
     app.use('/css', express.static(path.join(__dirname, '..', '..', 'public', 'css')));
 
