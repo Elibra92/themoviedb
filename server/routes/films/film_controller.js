@@ -1,5 +1,5 @@
 module.exports = (function() {
-    var Film = require('./Film_model.js');
+    var Film = require('./film_model.js');
     var path = require('path');
 
     var Genere = require(path.join(__dirname, '..', 'generi', 'generi_model.js'));

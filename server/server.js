@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();   // inizializzo l'applicazione
-const PORT = process.env.PORT || 6000;          //variabile d'ambiente
+const PORT = process.env.PORT || 3000;          //variabile d'ambiente
 
 require('./db.js');        //includiamo il file db.js
 require('./routes')(app, express);  //ho incluso la cartella routes dentro al server js

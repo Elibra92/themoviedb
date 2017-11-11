@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var Schema = mongoose.Schema;
-var path = require('path');
-var Genere = require(path.join(__dirname, '..', 'generi', 'generi_model.js'));
+
 
 var filmSchema = new Schema ( {
     vote_count : {
@@ -66,6 +65,6 @@ var filmSchema = new Schema ( {
         justOne: false
     })
 
-    
+
 var Film = mongoose.model('movie', filmSchema);
 module.exports = Film;
