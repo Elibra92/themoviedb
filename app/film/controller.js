@@ -12,8 +12,6 @@ angular.module('app').controller('FilmCtrl', function (FilmSrv, $scope) {
         })
 
     $scope.dettaglio = function (id) {
-
-
         FilmSrv.getOne(id)
             .then(function (result) {
                 $scope.film = result.data;
@@ -25,5 +23,22 @@ angular.module('app').controller('FilmCtrl', function (FilmSrv, $scope) {
 
     }
     $scope.visible=true;
-    console.log($scope.genere);
-});
+    
+                
+        $scope.inserisci_film = function(nome){
+            var nuovo = {
+                title: nome,
+                vote_average: $scope.voto_film,
+                poster_path: $scope.immagine_film,
+                overview: $scope.recensione}
+            
+            FilmSrv.inserisci(nuovo)
+                .then(function(result) {
+                    $scope.films = result.data;
+                })
+                .catch(function (err) {
+                    
+                });
+        }; 
+
+    });
