@@ -15,14 +15,12 @@
     <div class="container-fluid">
 
         <div class="row uno">
-            <div class="col-md-2">
-                <img src="images/primary-green.svg" width="50px">
+            <div class="col-md-2 col-sm-12">
+                <img src="images/cinema.png" width="100px">
             </div>
-            <div class="col-md-10">
-                <h1>THE MOVIE DB</h1>
-            </div>
+            
+            <div class="col-md-10 col-sm-12" ng-include="'/app/UI/nav.template.html'"></div>
         </div>
-        <div ng-include="'/app/UI/nav.template.html'"></div>
     </div>
     <!--fine menu-->
 
@@ -31,15 +29,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <h1 class="titolo_film_popolari" ng-show="all"> Film popolari </h1>
+                        <h1 class="titolo_film_popolari" ng-show="all"  ng-hide="form_visibile"> Film popolari </h1>
                     </div>
+                    
                     <div class="col-md-3 col-md-offset-6">
-                        <select ng-show="all" class="form-control" ng-options="gen.name for gen in elencogeneri" ng-model="genere"></select>
+                        <select ng-show="all" ng-hide="form_visibile" class="form-control" ng-options="gen.name for gen in elencogeneri" ng-model="genere"></select>
                     </div>
                 </div>
 
                 <!-- lista films -->
-                <div class="row">
+                <div ng-hide="form_visibile" class="row">
                     
                     <div ng-repeat="film in films | filtro_genere:genere | filter:SearchText" style="margin:0 50px;">
                         <div class="col-sm-12 col-md-6" ng-show="all">
@@ -57,7 +56,6 @@
                                     </p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -83,10 +81,34 @@
                     </div>
                 </div>
             </div>
-            <!--    style="width: 2000px; height:1000px; background-image: url('https://image.tmdb.org/t/p/w500{{film.backdrop_path}}'); background-color:red !important" -->
 
 
-
+             <!-- form -->
+             <div ng-show="form_visibile" class="col-md-6 col-md-offset-3">
+              <h1>Inserisci film</h1>
+                
+                    <div class="form-group">
+                        <label>Immagine film:</label>
+                        <input type="text" ng-model="film.immagine" id="input1" placeholder="Inserisci una immagine" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Nome film:</label>
+                        <input type="text" ng-model="film.nome" id="input1" placeholder="Inserisci il nome" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Voto film:</label>
+                        <input type="number" ng-model="film.voto" id="input2"  placeholder="Inserisci il voto" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Recensione:</label>
+                        <textarea type="text" ng-model="film.recensione" id="input2" placeholder="Inserisci una recensione" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group" style="text-align:center">
+                        <button ng-click="inserisci_film(film)" class="btn btn-default" style="color:rgb(54, 54, 54);background-color:rgb(255, 182, 56)">Inserisci il film</button>
+                    </div>
+        
+                    
+            </div> <!--fine form-->
 
 
 

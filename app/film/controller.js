@@ -12,8 +12,6 @@ angular.module('app').controller('FilmCtrl', function (FilmSrv, $scope) {
         })
 
     $scope.dettaglio = function (id) {
-
-
         FilmSrv.getOne(id)
             .then(function (result) {
                 $scope.film = result.data;
@@ -25,5 +23,31 @@ angular.module('app').controller('FilmCtrl', function (FilmSrv, $scope) {
 
     }
     $scope.visible=true;
-    console.log($scope.genere);
-});
+    
+     
+    $scope.$parent.inserisci = function() {
+        // console.log('inserisci film');
+        $scope.form_visibile = !$scope.form_visibile;
+      
+        
+    };   
+        $scope.inserisci_film = function(film){
+            console.log(film.nome);
+            var nuovo = {
+                title: film.nome,
+                vote_average:film.voto,
+                poster_path: film.immagine,
+                overview: film.recensione}
+            
+            FilmSrv.inserisci(nuovo)
+                .then(function(result) {
+                    $scope.films = result.data;
+                    
+                })
+                .catch(function (err) {
+                    
+                });
+                location.href="index.html";
+            }; 
+
+    });
