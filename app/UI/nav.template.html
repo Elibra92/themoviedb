@@ -1,38 +1,31 @@
 <div class="container-fluid">
 <div class="row uno">
-  <div class="col-md-2 col-sm-12">
-    <a ui-sref="/"><img src="images/cinema.png" width="100px"></a>
+  <div class="col-md-2 col-sm-12 col-xs-12">
+    <a ui-sref="/"><img src="images/cinema.png" width="120px"></a>
   </div>
 
-  <div class="col-md-10 col-sm-12">
+  <div class="col-md-6 col-sm-12 col-xs-12">
 
-
-    <div class="row">
-      <div class="col-md-8">
         <ul class="menu">
           <li ui-sref-active="active">
-            <a ui-sref="/films">Film</a>
-            <ul class="sottomenu">
-              <li ui-sref-active="active">
-                <a ui-sref="filmPopolari">Film popolari</a>
-              </li>
-              <li></li>
-            </ul>
+            <a ui-sref="films">Film</a>
+            
           </li>
           <li ui-sref-active="active">
             <a ui-sref="serieTv">Serie Tv</a>
           </li>
           <li>
-            <a>Inserisci Film</a>
+            <a ui-sref="nuovofilm({id:'nuovo'})">Inserisci Film</a>
           </li>
         </ul>
       </div>
-      <div class="col-md-4">
+    
+      <div class="col-md-4 col-sm-12 col-xs-12">
         <input ng-model="$parent.SearchText" placeholder="cerca nel sito" class="form-control search">
       </div>
     </div>
 
-  </div>
+  
 </div>
-</div> 
+
 <!--fine menu-->

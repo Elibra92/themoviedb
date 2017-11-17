@@ -1,0 +1,28 @@
+
+        <div class="col-sm-12 col-md-6 col-xs-12">
+            <div class="thumbnail thumbnail_listafilms">
+                <div class="row">
+                <div class="col-md-4 col-sm-3 col-xs-12" style="text-align:center">
+                    <img id="pannello_film" ng-src="https://image.tmdb.org/t/p/w500{{$ctrl.film.poster_path}}">
+                </div>
+                <div class="col-md-8 col-sm-9 col-xs-12">
+                <div class="caption">
+                    <h4>
+                        <strong>{{$ctrl.film.title }}</strong>
+                    </h4>
+                    <p>Voto: {{$ctrl.film.vote_average | number:1}} </p>
+                    <p ng-bind="trama">ciao ciao ciao ciao </p>
+                    <p>Trama: {{$ctrl.film.overview | limitTo:130}}... </p>
+                    <p>
+                        <a ng-click="dettaglio(film._id)" class="btn btn-primary" role="button">Dettaglio</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    </div>

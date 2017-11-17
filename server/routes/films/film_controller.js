@@ -22,6 +22,7 @@ module.exports = (function() {
 
     var getOne = function(req,res) {
         Film.findById(req.params.id)
+            .populate({path:'nuovo_generi', select: 'name -_id'})
             .exec()
             .then(function(film) {
                 res.status(200).json(film);

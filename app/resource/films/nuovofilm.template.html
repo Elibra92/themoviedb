@@ -1,0 +1,52 @@
+<!-- form -->
+             <div  class="col-md-6 col-md-offset-3">
+              <h1>Inserisci un film</h1><br/>
+                <form name="form_inserisci_film">
+                    <div class="form-group">
+                  
+                        <label>Immagine:</label>
+                        <input type="text" ng-model="ilm.poster_path" name="immagine_film"  placeholder="inserisci una immagine" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                            <label>Video:</label>
+                            <input type="text" ng-model="film.video" name="video_film" required id="input1" placeholder="Inserisci un video" class="form-control">
+                            <span ng-show="form_inserisci_film.video_film.$touched && form_inserisci_film.video_film.$invalid">Campo obbligatorio</span>
+                        </div>
+                    <div class="form-group">
+                        <label>Titolo:</label>
+                        <input type="text" ng-model="film.title" name="titolo_film"  required val="nome_film"  id="input1" placeholder="Inserisci il nome" class="form-control">
+                        <span ng-show="form_inserisci_film.titolo_film.$touched && form_inserisci_film.titolo_film.$invalid">Campo obbligatorio</span>
+                    </div>
+                    <div class="form-group">
+                            <label>Generi:</label>{{generi}}
+                            <select class="form-control" ng-options="gen.name for gen in generi" ng-change="seleziona_genere(film.genere)" ng-model="film.genere"></select> 
+                            <div ng-repeat="chip in generi_selezionati track by $index" class="chip">
+                                    {{chip.name}} 
+                            </div>
+                            <div ng-repeat="chip in film.nuovo_generi track by $index" class="chip">
+                                    {{chip.name}} 
+                            </div>
+                                    
+                            <span ng-show="form_inserisci_film.titolo_film.$touched && form_inserisci_film.titolo_film.$invalid">Campo obbligatorio</span>
+                        </div>
+                    <div class="form-group">
+                        <label>Lingua originale:</label>
+                        <input type="text" ng-model="film.original_language" name="linguaOriginale_film" required id="input1" placeholder="Inserisci la lingua originale" class="form-control">
+                        <span ng-show="form_inserisci_film.linguaOriginale_film.$touched && form_inserisci_film.linguaOriginale_film.$invalid">Campo obbligatorio</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Recensione:</label>
+                        <textarea type="text" ng-model="film.overview" name="recensione_film" required id="input2" placeholder="Inserisci una recensione" class="form-control"></textarea>
+                    <span ng-show="form_inserisci_film.recensione_film.$touched && form_inserisci_film.recensione_film.$invalid">Campo obbligatorio</span>
+                    </div>
+                    <div class="form-group">
+                            <label>Data uscita:</label>
+                            <input type="date" ng-model="film.release_date" name="dataUscita_film" required id="input1" placeholder="Inserisci la data di uscita" class="form-control">
+                            <span ng-show="form_inserisci_film.dataUscita_film.$touched && form_inserisci_film.dataUscita_film.$invalid">Campo obbligatorio</span>
+                        </div>
+                    <div class="form-group" style="text-align:center">
+                        <button ng-click="inserisci_film(film)" class="btn btn-default" style="color:rgb(54, 54, 54);background-color:rgb(255, 182, 56)">Inserisci il film</button>
+                    </div>
+                </form>
+                    
+            <!-- </div> fine form -->

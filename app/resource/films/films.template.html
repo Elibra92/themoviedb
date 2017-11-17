@@ -1,4 +1,16 @@
-<div class="container">
-    <h2>Films</h2>
-    <div ng-repeat="film in films">{{film.title}}</div>
-</div>
+
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                <h1>Films</h1>
+        </div>
+           
+    </div> 
+
+     <film-card
+     ui-sref="film({id:film._id})"
+     film="film" 
+     ng-repeat="film in films">
+    </film-card>
+    
+ </div>

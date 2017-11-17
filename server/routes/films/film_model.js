@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var filmSchema = new Schema ( {
     vote_count : {
         type: Number,
-        required: true
+        // required: true
     },
     video: {
         type: Boolean,
@@ -14,7 +14,7 @@ var filmSchema = new Schema ( {
     },
     vote_average : {
         type: Number,
-        required: true
+        // required: true
     },
     title: {
         type: String,
@@ -22,7 +22,7 @@ var filmSchema = new Schema ( {
     },
     popularity : {
         type:Number,
-        required: true
+        // required: true
     },
     poster_path: {
         type: String,
@@ -33,11 +33,11 @@ var filmSchema = new Schema ( {
     },
     original_title : {
         type: String,
-        required: true,
+        // required: true,
     },
     genre_ids: {
         type: [Number],          //esempio di required con array
-        required:true,
+        // required:true,
     },
        
     
@@ -46,7 +46,7 @@ var filmSchema = new Schema ( {
     },
     adult: {
         type: Boolean,
-        required: true
+        // required: true
     },
     overview : {
         type: String,
@@ -54,7 +54,7 @@ var filmSchema = new Schema ( {
     },
     release_date : {
         type: Date,
-        required: true
+        // required: true
     }
 }, {toJSON : { virtuals: true}
 });

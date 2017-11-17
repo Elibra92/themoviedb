@@ -21,7 +21,7 @@ angular.module('app')
                     }
                 }
             })
-            .state('/films', {
+            .state('films', {
                 url: '/films',
                 resolve: {
                     films: function(FilmsSrv) {
@@ -40,4 +40,49 @@ angular.module('app')
                 }
             })
 
+            .state('film', {
+                url: '/film/{id}',
+                resolve: {
+                    film: function(FilmsSrv, $stateParams) {
+                        return FilmsSrv.getOne($stateParams.id);
+                    },
+                 },
+                views: {
+                    menu: {
+                        templateUrl: 'app/UI/nav.template.html',
+                        controller: 'navCtrl'
+                    },
+                    contenuto: {
+                        templateUrl: 'app/resource/films/film.template.html',
+                        controller: 'filmCtrl',
+                     
+                    }
+                }
+            })
+            .state('nuovofilm', {
+                url: '/nuovofilm/{id}',
+                resolve: {
+                    generi: function(GeneriSrv) {
+                        return GeneriSrv.getAllGeneri();
+                    },
+                    film2: function(FilmsSrv, $stateParams) {
+                        
+                        if ($stateParams.id == 'nuovo')
+                        return null;
+                    else
+                        return FilmsSrv.getOne($stateParams.id)
+                    }
+                },
+                views: {
+                    menu: {
+                        templateUrl: 'app/UI/nav.template.html',
+                        controller: 'navCtrl'
+                    },
+                    contenuto: {
+                        templateUrl: 'app/resource/films/nuovofilm.template.html',
+                        controller: 'nuovofilmCtrl',
+                     
+                    }
+                }
+            })
     })
